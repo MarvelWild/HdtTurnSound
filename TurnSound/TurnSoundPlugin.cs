@@ -53,7 +53,9 @@ namespace HDT.Plugins.TurnSound
                 Log(soundPath);
 
                 _snd = new SoundPlayer(soundPath);
-                
+
+
+                GameEvents.OnGameStart.Add(OnGameStart);
                 GameEvents.OnTurnStart.Add(OnTurnStart);
                 _isLoaded = true;
             }
@@ -70,18 +72,27 @@ namespace HDT.Plugins.TurnSound
 
 
         private DateTime _lastPlay = DateTime.MinValue;
+
+        private void OnGameStart()
+        {
+            PlaySound();
+        }
         private void OnTurnStart(ActivePlayer player)
         {
             if (ActivePlayer.Player != player) return;
 
+            PlaySound();
+        }
 
-            var now=DateTime.Now;
-            var ms_since_play=(now-_lastPlay).TotalMilliseconds;
+        private void PlaySound()
+        {
+            var now = DateTime.Now;
+            var ms_since_play = (now - _lastPlay).TotalMilliseconds;
 
             // fix multiple fires on single turn start
             if (ms_since_play < 1000)
                 return;
-            
+
             _snd.Play();
             _lastPlay = now;
         }
