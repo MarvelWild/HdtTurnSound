@@ -1,6 +1,8 @@
 # HdtTurnSound
 Hearthstone deck tracker plugin - play sound on your turn start
 
+Why? I play with no ingame sounds, but still want to know when its my turn.
+
 install:
 
 	1. open plugin folder (hdt options->plugins->plugins folder)
