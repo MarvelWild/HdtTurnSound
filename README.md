@@ -4,7 +4,7 @@ Hearthstone deck tracker plugin - play sound on your turn start
 Why? I play with no ingame sounds, but still want to know when its my turn.
 
 Release download:
-https://github.com/MarvelWild/HdtTurnSound/releases/tag/v1.0.1
+https://github.com/MarvelWild/HdtTurnSound/releases/
 
 install:
 
