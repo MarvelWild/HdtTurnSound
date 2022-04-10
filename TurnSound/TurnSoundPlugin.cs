@@ -5,6 +5,7 @@ using System;
 using System.IO;
 using System.Media;
 using System.Reflection;
+using System.Threading.Tasks;
 using System.Windows.Controls;
 
 namespace HDT.Plugins.TurnSound
@@ -75,7 +76,8 @@ namespace HDT.Plugins.TurnSound
 
         private void OnGameStart()
         {
-            PlaySound();
+            // hdt notifies too early
+            Task.Delay(10000).ContinueWith(task=>PlaySound());
         }
         private void OnTurnStart(ActivePlayer player)
         {
@@ -90,7 +92,7 @@ namespace HDT.Plugins.TurnSound
             var ms_since_play = (now - _lastPlay).TotalMilliseconds;
 
             // fix multiple fires on single turn start
-            if (ms_since_play < 1000)
+            if (ms_since_play < 8000)
                 return;
 
             _snd.Play();
